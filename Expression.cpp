@@ -29,6 +29,10 @@ int Expression::getResult() const {
 	return m_rslt;
 }
 
+/*------------------------------------------------------------
+	수식의 가장 내부의 괄호안의 수식 반환
+	int 포인터로 반환 수식의 시작과 끝 위치도 알 수 있다.
+--------------------------------------------------------------*/
 string Expression::getInnerExp(int* st, int* en) const {
     string::size_type open_bracket;
     string::size_type close_bracket;
@@ -50,6 +54,9 @@ string Expression::getInnerExp(int* st, int* en) const {
     return innerExp;
 }
 
+/*------------------------------------------------------------
+	수식 계산 실행 함수.
+--------------------------------------------------------------*/
 void Expression::calculate() {
 	string inner_exp;
 	string::size_type p_oper = string::npos;
@@ -92,6 +99,9 @@ void Expression::calculate() {
 	m_rslt = atoi(m_exp.c_str());
 }
 
+/*------------------------------------------------------------
+	수식(exp)의 주어진 위치(pos)값이 연산자인지 판단하는 조건자
+--------------------------------------------------------------*/
 bool Expression::isOperator(string exp, const int pos) const {
 	bool b_rtn;
 
@@ -113,6 +123,9 @@ bool Expression::isOperator(string exp, const int pos) const {
 	return b_rtn;
 }
 
+/*------------------------------------------------------------
+	주어진 수식(exp)에 연산자가 존재하는지 판단하는 조건자
+--------------------------------------------------------------*/
 bool Expression::isExistOperator(string exp) const {
 	string::size_type expLen = exp.length();
 	int  nCnt = 0;
@@ -133,6 +146,9 @@ bool Expression::isExistOperator(string exp) const {
 		return true;
 }
 
+/*------------------------------------------------------------
+	주어진 수식(exp)의 구간(st~en)를 chg_exp로 변경하는 함수.
+--------------------------------------------------------------*/
 void Expression::replaceExp(string& exp, const int st, const int en, string chg_exp) {
 	exp.replace(st, en-st+1, chg_exp);
 }
@@ -145,6 +161,10 @@ string Expression::toString(int number) {
 	return sout.str();
 }
 
+/*------------------------------------------------------------
+	주어진 연산자의 우선순위를 반환하는 함수
+	(현재 수식 계산에 쓰이진 않음)
+--------------------------------------------------------------*/
 int Expression::getPriority(char oper) {
 	int nPriority = 0;
 
@@ -161,6 +181,10 @@ int Expression::getPriority(char oper) {
     return nPriority;
 }
 
+/*------------------------------------------------------------
+	주어진 수식(exp)에 주어진 우선순위에 해당하는 연산자가
+	있는지 판단하여 위치를 반환.
+--------------------------------------------------------------*/
 int Expression::findWithPriority(string exp, int priority) {
 	string::size_type pos = string::npos;
 
