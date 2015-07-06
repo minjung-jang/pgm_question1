@@ -18,6 +18,9 @@ int Calculator::getResult() const {
     return m_result;
 }
 
+/*------------------------------------------------------------
+	연산자, 피연산자 2개로 이루어진 단순한 산수
+--------------------------------------------------------------*/
 void Calculator::execute() {
 	signed int max_value = 0x7fffffff;
 	signed int min_value = 0x80000000;
