@@ -23,7 +23,7 @@ string Expression::getOriExp() const {
 void Expression::setExp(string exp) {
 	m_exp = exp;
 	m_oriExp = exp;
-}
+} 
 
 int Expression::getResult() const {
 	return m_rslt;
